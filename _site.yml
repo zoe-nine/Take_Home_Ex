@@ -1,7 +1,7 @@
 name: "Take_Home_Ex"
-title: "My Blog"
+title: "Take-home Exercise"
 description: |
-  My Blog
+  Take-home Exercise
 output_dir: "_site"
 navbar:
   right:
