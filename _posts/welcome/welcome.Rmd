@@ -1,5 +1,5 @@
 ---
-title: "Take-home Exercise"
+title: "ISSS608 Visual Analytics"
 description: |
   Welcome to my practice blog for ISSS608 Visual Analytics Applications, a course module offered in SMU.
 author:

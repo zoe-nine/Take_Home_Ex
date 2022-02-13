@@ -1,0 +1,121 @@
+---
+title: "DataViz Makeover 1"
+description: |
+  In this post, a population labour participation rate data case applying the fundamentals of Visual Analytics using Tableau will be presented. I will critique the visualisation and propose an alternative for improvement.
+author:
+  - name: Zhang Yi
+    url: https://example.com/norajones
+date: 2022-02-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.retina = 5,
+                      warning = FALSE)
+```
+
+# 1.0 Critique of Visualisation
+The original visualisation is created by using data provided by Ministry of Manpower,
+Singapore (MOM). The data are available under the page entitle [*Statistical Table: Labour
+Force*](https://stats.mom.gov.sg/Pages/LabourForceTimeSeries.aspx).
+
+![](Supporting Images/data_viz.png)
+
+## 1.1 Clarity
+1. **Title**: 
+     + The title of the graph did not convey a clear message. It only says that the visualisation is about labour force participation rate (LFPR) without stating the data origin and time period covered. Hence, we do not know the participation rate is about which particular group of people for a period of how long. In fact, these are Singapore female population's labour force participation rates for a time period ranging from 2010 to 2021. 
+     + The title did not specify granularity of measurement for the data presented (e.g. yearly, monthly or weekly).
+     + The title did not specify the unit of measure for the rate, which is percent. 
+     + No insights highlighted from the title. 
+2. **Y-axis**: 
+     + The Y axis use the acronym of 'Lfpr' directly when the title of the graph did not introduce it in parentheses after the full term. 
+     + The Y axis did not indicate the unit of measurement for labour force participation rate, which is percent. 
+
+3. **X-axis**: The X-axis labels are fully labelled unnecessarily, which could then be misleading. From the graph, it is clear that the labour force participation rates are plotted over a time period (which is from 2010 to 2021). However, the x-axis label only could show '2015' because each subplot becomes too narrow when the area graphs for all age group are squeezed together. 
+
+4. **Grouping of data**: Looking at the age groups used, there is redundancy resulted from overlapping between the age group of '70 & above' and the two age groups of '70 to 74' and '75 & above'. Including all three groups would be  unnecessary as the LFPR among '70 to 74' and '75 & above' are already somewhat reflected in the group of '70 & above'. 
+
+5. **Annotation**: There is no annotation in the graph highlighting important findings. 
+6. **Source**: There is not caption indicating source of data.  
+
+## 1.2 Aesthetic
+1. **Axis Labels**: The axis labels for X-axis are repetitive.
+2. **Order of Graph**: There is no clear logic behind the ordering of area plots for various age group. A guess based on the graph would be that these plots are sorted based on an ascending order of the sum of labour participation rate for each age group across the years. This ordering may be confusing and may not reveal an insightful pattern of how the participation rates gradually change as the population ages. 
+3. **Grid lines**: The vertical grid lines are distracting. 
+4. **Legend and Shading of the graph**: The color palette chosen for shading looks messy and distract viewers' attention, especially when many age groups are involved. 
+
+
+# 2.0 Proposed Alternative
+
+Here is the propsed alternative drawn by hand. 
+![](Supporting Images/Screenshot 2022-02-13 at 10.32.10 PM.png){height=250%, width=100%}
+
+## 2.1 Clarity
+1. **Title**: 
+     + Edit the main title to highlight important conclusions drawn from the graph.
+     + Add in a sub-title to describe the context of the graph (Singapore) and specify the granularity of the
+data, the measurement unit for Y-Axis as well as the time period involved.
+     + Put LFPR in parentheses after the full term to reflect what it stands for. 
+2. **Y-axis**: Indicate the unit of measure (%). 
+3. **X-axis**: Remove the repetitive labels and indicate the time period in the title section instead. 
+4. **Grouping of data**: Delete the age groups of '70 to 74' and '75 & above' to avoid overlapping. 
+5. **Annotation**: Add in annotations to denote insightful findings for viewers.
+6. **Source**: Add in caption at the bottom of the graph to denote source of data used. 
+
+## 2.2 Aesthetic
+1. **Axis Labels**: Reduce the repetitive labeling of x-axis.
+2. **Order of Graph**: Instead of the current order, we would sort the age groups based on the the data source order, which is the the ascending order of age group.
+3. **Grid lines**: Remove the vertical grid lines. 
+4. **Legend Shading of the graph**: Remove the color palette shading for different age groups as the header already shows the age range for each section, which renders the color differentiation less useful. Legend could be removed as well because the long list of colors distracts viewers when they need to keep referring to it.
+
+
+# 3.0 Proposed Visualisation on Tableau
+Please view the detailed proposed alternative on Tableau Public [*here*](https://public.tableau.com/app/profile/zhang.yi5280/viz/Dataviz_Makeover/Sheet1).
+
+# 4.0 Step-by-step Guide Using Tableau
+
+No | Step          | Action
+-- | ------------- | ----------------
+1  | Delete the irrelevant columns and save the rest of the table into a new sheet using Microsoft Excel. | ![](Supporting Images/Screenshot 2022-02-13 at 12.58.21 PM.png){height=200%, width=150%}
+2  | Import the revised data into Tableau by dragging it into the main pane. Rename the 'Age (Years)/Sex' Field name into 'Age (Years)' by right click on the column and choose 'Rename'. | ![](Supporting Images/Screenshot 2022-02-13 at 1.31.55 PM.png){height=200%, width=150%}
+3  | Pivot the data in sheet by dragging 'Measure Values' into 'Columns' and 'Age (Years)' into 'Rows' shevles. | ![](Supporting Images/Screenshot 2022-02-13 at 1.36.32 PM.png){height=150%, width=100%}
+4  | Remove the years before 2010 as well as the CNT in 'Measure Values'. The resultant 'Measure Values' only contain data from 2010 to 2021. | ![](Supporting Images/Screenshot 2022-02-13 at 1.41.56 PM.png){height=100%, width=60%}
+5  | View the pivoted data by clicking on 'View Table' under 'Analysis' Tab. | ![](Supporting Images/Screenshot 2022-02-13 at 1.53.12 PM.png){height=200%, width=150%}
+6  | Export the data by clicking on the 'Export All' button at the top right corner of the window. | ![](Supporting Images/Screenshot 2022-02-13 at 1.55.51 PM.png){height=180%, width=120%}
+7  | Repeat Steps 1 to 6 for both males and females. Combine all three files in a new Excel Worksheet and add a column named 'Sex' to identify the gender. Rename the 'Measure Names' column to 'Year', 'Measure Values' column to 'LFPR'. Drag this finalised file into Tableau. | ![](Supporting Images/Screenshot 2022-02-13 at 2.17.05 PM.png){height=180%, width=120%}
+8  | Modify LPFR from absolute value to percentage by righting clicking and creating a new calculated field called 'LFPR (%)', which is derived by dividing the original LPFR by 100. | ![](Supporting Images/Screenshot 2022-02-13 at 2.20.47 PM.png){height=150%, width=120%} ![](Supporting Images/Screenshot 2022-02-13 at 2.21.22 PM.png){height=150%, width=120%}
+9  | Drag 'Age(Years)' and 'Year' into Columns shelves and 'LFPR (%)' into Rows shelves. Select 'Area' chart along the drop-down list under 'Marks' Card and drag 'Sex' over to the 'Color' icon Under 'Marks' Card. Lastly, click on 'Analysis' tab and turn off the 'Stack Marks' so that the area graphs for different sex would not stack on each other. | ![](Supporting Images/Screenshot 2022-02-13 at 4.51.07 PM.png){height=100%, width=120%}  ![](Supporting Images/Screenshot 2022-02-13 at 4.39.24 PM.png){height=150%, width=120%} 
+10 | Choose the data to be displayed by right clicking and choosing 'Edit the filters'. Untick those you do not want to display on the graph. In this case, we would untick the bottom 5 boxes under 'Age(Years)' to only keep age groups until '70 & above'. Also, untick 'Total' under 'Sex' to only focus on the difference in LFPR by gender and age groups.  | ![](Supporting Images/Screenshot 2022-02-13 at 4.42.29 PM.png){height=180%, width=150%}
+11 | Right click on the Y-axis to format the scale into percentage. | ![](Supporting Images/Screenshot 2022-02-13 at 5.20.12 PM.png){height=100%, width=70%} ![](Supporting Images/Screenshot 2022-02-13 at 5.21.22 PM.png){height=100%, width=70%}
+12 | Format 'Measure' Values into 'Percentage' accordingly. | ![](Supporting Images/Screenshot 2022-02-13 at 6.15.39 PM.png){height=100%, width=70%}
+13 | Select 'Create Calculated Field' under 'Analysis' Tab to form a new variable named 'Lower LFPR(%)' to exhibit the lower LFPR regardless of gender type. The new variable is formed by typing in the formula shown on the right. | ![](Supporting Images/Screenshot 2022-02-13 at 5.01.18 PM.png){height=180%, width=150%}
+14 | Drag 'Lower LFPR(%)' variable over to the Y-axis to create a combined axis. | ![](Supporting Images/Screenshot 2022-02-13 at 5.38.32 PM.png){height=180%, width=150%}
+15 | Drag 'Measure Names' from 'Rows' shelves over onto 'Detail' icon under 'Marks' Card. Change the 'Detail' icon of   'Measure Names' to 'Color'. | ![](Supporting Images/Screenshot 2022-02-13 at 5.47.30 PM.png){height=100%, width=60%}
+16 | Click on 'Color' icon and select 'Edit Color' to change color of the 'Lower LFPR' variables for males and females to white. Change the color of female and male LFPR to a lighter pink and blue color for better visualisation purpose later. Set opacity of color to 100%. | ![](Supporting Images/Screenshot 2022-02-13 at 7.05.57 PM.png){height=180%, width=150%}
+17 | Drag 'LFPR (%)' to the secondary Y-axis on the right side of the chart. Click on the new section named 'SUM(LFPR(%))' under 'Marks'. Change the chart type to ‘Line’ using the drop-down list and remove 'Measure Names' under the section. | ![](Supporting Images/Screenshot 2022-02-13 at 7.11.04 PM.png){height=180%, width=150%}
+18 | Make the secondary Y-axis invisible by right click to edit axis. Then delete the axis title and set tick marks to 'None'. Remove the repetitive labels of time period along X-axis by right click on the 'Year' variable and untick the 'Show Header' option. | ![](Supporting Images/Screenshot 2022-02-13 at 7.12.54 PM.png){height=150%, width=100%} ![](Supporting Images/Screenshot 2022-02-13 at 7.14.55 PM.png){height=150%, width=100%}
+19 | Add in annotations by right click at a place on the chart. Choose 'Annotate' and then 'Area' to add in any trends/ important findings discovered. | ![](Supporting Images/Screenshot 2022-02-13 at 8.41.41 PM.png){height=120%, width=80%}
+20 | Edit the title, subtitle and caption accordingly. | ![](Supporting Images/Screenshot 2022-02-13 at 8.51.08 PM.png){height=150%, width=100%} ![](Supporting Images/Screenshot 2022-02-13 at 8.50.54 PM.png){height=90%, width=70%}
+21 | The final tableau chart is produced. | ![](Supporting Images/Screenshot 2022-02-13 at 10.39.43 PM.png){height=150%, width=100%}
+
+
+
+# 5.0  Important Findings
+1. For age groups from 30 to 54, more females are entering into the workforce as seen from the significant increase in LFPR. This increase is made even more obvious in comparison with working males whose LFPR remained relatively stable across the time period. This could be due to the the efforts made in empowering women to juggle their home and workplace commitments. The implementation of flexible working hours would allow women to work around their domestic schedules. In 2013, the government implemented the enhanced Work-Life Grant was introduced in 2013 to motivate companies to implement flexible work arrangements (FWAs). The increase in the number of child care centres has also helped reducing women’s care-taking responsibilities, so that more females can join the workforce after giving birth.
+
+2. A gradual and significant increase of LFPR is observed in age groups from 60 years old (both females and males) onwards. This could be due to the the government constant effort in revising retirement and re-employment related matters, which prolonged the working age of the experienced elderly. In 2012, the government has launched the Retirement and Re-employment Act, which states that workers can continue to work beyond the age of 62 if they are able and want to, and employers are required to continue hiring them. Following that, the government raised the re-employment age ceiling again to the next level of 67 from 1 July 2017.
+
+3. A sharp decrease has been observed in LFPR of both males and females age groups of 20 to 24 from 2019 to 2020. This could be possibly due to the Covid-19 break out from the start of year 2019. Plenty of the firms cut down their headcount during that year due to the adverse impact Covid-19 pandemic on their businesses. This might affect the fresh graduates the most who just stepped out of university and need to secure their first jobs. The older working adults, on the other hand, might not be affected by that much as they already had a relative stable occupation. 
+
+
+
+
+
+
+
+
+
+
