@@ -18,11 +18,17 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 # 1.0 Introduction
-This take-home exercise aims to explore the use of visual analytics techniques and tools to visualise and analyse **multivariate data** with R. Multivariate data analysis is a statistical procedure for analysis of data involving more than two dependent variables. Many problems in the world can be practical examples of multivariate analysis as whatever happens in the world happens due to multiple reasons.   
+This take-home exercise aims to explore the use of visual analytics techniques and tools to visualise and analyse **multivariate data** with R. Multivariate data analysis is a statistical procedure for analysis of data involving more than two dependent variables. Many problems in the world can be practical examples of multivariate analysis as whatever happens in the world happens due to multiple reasons.  
 
+## 1.1 Comparison between Tableau and R
+Tableau has limited tools in handling multivariate data analysis whereas R could be used to visualise and analyse multidimensional continuous and categorical data through several techniques:  
+
+* To reveal the pair-relationship between multiple variables: scatterplot matrix, correlogram  
+* To compare the feature of several individual observations on a set of numeric variables: heatmap, parallel coordinates plot  
+
+## 1.2 Installing relevant packages
 For this exercise, the data set used is *starbucks_drink.csv*. In order to segment "the kid drink and other" by nutrition indicators, we need to use **heatmap** as it would be able to perform clusterisation and do a corresponding reordering: it would calculate the distance between each pair of rows and columns and try to order them by similarity in terms of level of nutrition indicators. 
 
-## Installing relevant packages 
 Before processing to the next section, please use the code chunk below to **install and launch the required packages** in RStudio.
 
 ```{r}
@@ -35,6 +41,9 @@ for(p in packages){library
   library(p, character.only = T)
 }
 ```
+
+
+
 
 
 # 2.0 Proposed Sketch
@@ -116,7 +125,7 @@ From the matrix, we can see that the row numbers have been replaced by types of 
 
 ![](Supporting Images/Screenshot 2022-02-20 at 7.48.06 PM.png){height=50%, width=80%}
 
-## 4.0 Creating Interactive Heatmap
+# 4.0 Creating Interactive Heatmap
 In this section, we would use the **heatmaply** package to design an interactive cluster heatmap to segment the drinks by nutrition indicators. 
 
 ## 4.1 Data transformation using percentilsing method
@@ -181,8 +190,9 @@ Besides the abovementioned functions, **heatmaply** also provides basic plotting
 *main*: to write the main title of the plot.  
 *xlab* and *ylab*: to write the x-axis and y-axis labels respectively.  
 
-```{r}
+From the coloring of cluster on the right side of heatmap, we would be able to the segmentation of "kid drinks and other" by level of nutrition indicators. 
 
+```{r}
 heatmaply(normalize(starbucks_matrix[, -c(13)]),
           Colv=NA,
           seriate = "OLO",
@@ -196,11 +206,6 @@ heatmaply(normalize(starbucks_matrix[, -c(13)]),
           ylab = "Type of Drink"
           ) %>% layout(width=800, height=1000)
 ```
-From the coloring of cluster on the right side of heatmap, we would be able to the segmentation of "kid drinks and other" by level of nutrition indicators. 
 
-## 5.0 Comparison between Tableau and R
-Tableau have limited tools in handling multivariate data analysis whereas R could be used to visualise and analyse multidimensional continuous and categorical data through several techniques:
 
-* To reveal the pair-relationship between multiple variables: scatterplot matrix, correlogram
-* To compare the feature of several individual observations on a set of numeric variables: heatmap, parallel coordinates plot
 
