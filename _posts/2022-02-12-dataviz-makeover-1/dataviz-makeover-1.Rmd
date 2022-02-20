@@ -39,6 +39,7 @@ Force*](https://stats.mom.gov.sg/Pages/LabourForceTimeSeries.aspx).
 4. **Grouping of data**: Looking at the age groups used, there is redundancy resulted from overlapping between the age group of '70 & above' and the two age groups of '70 to 74' and '75 & above'. Including all three groups would be  unnecessary as the LFPR among '70 to 74' and '75 & above' are already somewhat reflected in the group of '70 & above'. 
 
 5. **Annotation**: There is no annotation in the graph highlighting important findings. 
+
 6. **Source**: There is not caption indicating source of data.  
 
 ## 1.2 Aesthetic
