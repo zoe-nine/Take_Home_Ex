@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE,
 This take-home exercise aims to explore the use of visual analytics techniques and tools to visualise and analyse **multivariate data** with R. Multivariate data analysis is a statistical procedure for analysis of data involving more than two dependent variables. Many problems in the world can be practical examples of multivariate analysis as whatever happens in the world happens due to multiple reasons.  
 
 ## 1.1 Comparison between Tableau and R
-Tableau has limited tools in handling multivariate data analysis whereas R could be used to visualise and analyse multidimensional continuous and categorical data through several techniques:  
+Tableau has limited tools in handling multivariate data analysis whereas R could be used to visualise and analyse multidimensional continuous and categorical data through several techniques: 
 
 * To reveal the pair-relationship between multiple variables: scatterplot matrix, correlogram  
 * To compare the feature of several individual observations on a set of numeric variables: heatmap, parallel coordinates plot  
